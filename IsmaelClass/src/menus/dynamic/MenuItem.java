@@ -5,6 +5,7 @@
  */
 package menus.dynamic;
 
+import consola.Util;
 import estructuras.Lista;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -72,8 +73,23 @@ public class MenuItem {
     }
     
     public String toString() {
-        return code + ".- " + name + (method!=null ? "" : (field==null ? " : [Sin Codigo]" : ""));
+        if(character=='S') return code + ".- " + name.replaceFirst(""+character, "["+Util.mayusculas(character)+"]");
+        return code + ".- " + name.replaceFirst(""+character, "["+Util.mayusculas(character)+"]") + (method!=null ? "" : (field==null ? " : [Sin Codigo]" : ""));
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public char getCharacter() {
+        return character;
+    }
+
+    public int getCode() {
+        return code;
+    }
+    
+    
     
     private String getString(String type) {
         for(String s : questions) {
